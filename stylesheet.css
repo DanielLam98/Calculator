@@ -1,31 +1,31 @@
 #calculator{
-    width:50%;
+    width:500px;
     height:500px;
     border: 1px solid black;
 }
-
-#display{
-    width: 60%;
-    margin: auto;
-    margin: 15px 0px 0px 15px;
-    border: 1px solid black;
-    height: 50px;
-    float: left;
+#top{
+    margin-top:15px;
+}
+#numbers{
+    padding: 0px 10px 0px 10px;
 }
 
-#clear{
-    width:30%;
-    margin: 15px 15px 0px 0px;
-    float: right;
-    padding: 15px;
+#display{
+    width: 90%;
+    padding-top: 10px;
+    margin:auto;
+    border: 1px solid black;
+    height: 50px;
+}
+.clear{
+    padding:15px;
+}
+.operand{
+    padding:15px;
+}
+.operator{
+    padding:15px;
 }
 #display h1{
     text-align: center;
-}
-#numbers{
-    width:60%
-}
-#numbers button{
-    margin: 15px;
-    padding: 40px;
 }

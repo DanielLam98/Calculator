@@ -1,3 +1,24 @@
+let result= 0;
+let count = 0;
+let totalResult = [];
+
+displayNumber();
+function displayNumber(){
+    const display = document.querySelector("#display");
+    const number = document.querySelectorAll('.operand');
+    const operator = document.querySelectorAll('.operator');
+    let result = 0;
+    number.forEach((button) =>{
+        button.addEventListener('click', () =>{
+            tempNum = button.textContent;
+            if (result == '0'){
+                result = tempNum;
+            }
+            else result = tempNum + result;
+            display.textContent = result;
+        });
+    });
+}
 function add(num1, num2){
     return num1 + num2;
 }
