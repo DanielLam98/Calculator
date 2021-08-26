@@ -11,10 +11,20 @@ digitsBtn.forEach(button => button.addEventListener('click', () =>{
     displayScreen(button.textContent);
 }));
 
+document.addEventListener('keydown', (e)=>{
+    console.log(e.key);
+    (e.key === "Backspace")? display.textContent = display.textContent.slice(0,-1): 0;
+    (e.key>= 0 && e.key <= 9)? displayScreen(e.key):0;
+});
+
 function displayScreen(num){
     if (display.textContent.length >= 12){ //if the result length is greater than 12, user is unable to add to display
         return;
     }
+    if (num == "."){
+        if (display.textContent.includes(".")){
+            return;
+    }}
     display.textContent += num;
 }
 
@@ -25,21 +35,22 @@ clearBtn.addEventListener('click', () =>{
     operatorValue = "";
 })
 
-equalBtn.addEventListener('click', () =>{
-    if (value1 != 0 && value2 ==0 && operatorValue != "" && display.textContent != value1){
+equalBtn.addEventListener('click', equalFunc);
+
+function equalFunc(){
+    //checks for value on display to operate
+    if (value1 != 0 && value2 ==0 && operatorValue != "" && display.textContent != "" ){
         value2 = display.textContent;
         result = operate(operatorValue,value1,value2);
         if (result.toString().length >= 12){
             result = result.toString().slice(0,12);
         }
-        console.log('equal button');
         display.textContent = result;
         value1= result;
         value2 = 0;
         operatorValue = "";
-    };
-})
-
+    }
+};
 operatorBtn.forEach(button => button.addEventListener('click', () =>{
     // sets value1 and operatorValue
     if (value1 == 0 && value2 == 0){
@@ -49,25 +60,30 @@ operatorBtn.forEach(button => button.addEventListener('click', () =>{
         console.log('operator button func 1');
     }
     // sets value2 and operates, value1 already declared
-    else if(result != 0 && value2 ==0 && operatorValue != ""){ 
-        result = operate(operatorValue,value1,value1);
-        if (result.toString().length >= 12){
-            result = result.toString().slice(0,12);
-        }
-        operatorValue = button.textContent;
-    }
-
-    else if (value1 != 0 && operatorValue !="" && value2 ==0 &&display.textContent != ""){
-        console.log('func 2')
+    else if(result == 0 && value2 ==0 && operatorValue != ""){ 
         value2 = display.textContent;
         result = operate(operatorValue,value1,value2);
         if (result.toString().length >= 12){
             result = result.toString().slice(0,12);
         }
-        value1= result;
-        display.textContent = result;
-        value2=0;
+        display.textContent = "";
         operatorValue = button.textContent;
+        value1= result;
+        value2= 0;
+        console.log('func 2');
+    }
+    //calculator already computed once
+    else if (value1 !=0 && result != 0 && display.textContent == "" && value2== 0){
+        result = operate(operatorValue,value1,value2);
+        if (result.toString().length >= 12){
+            result = result.toString().slice(0,12);
+        }
+    }
+    //calculator already omputed one or more
+    else if (result != 0 &&operatorValue =="" &&value2==0 &&value1 !=0){
+        value1= display.textContent;
+        operatorValue = button.textContent;
+        display.textContent = "";
     }
 
 }))
