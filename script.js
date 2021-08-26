@@ -12,7 +12,6 @@ digitsBtn.forEach(button => button.addEventListener('click', () =>{
 }));
 
 document.addEventListener('keydown', (e)=>{
-    console.log(e.key);
     (e.key === "Backspace")? display.textContent = display.textContent.slice(0,-1): 0;
     (e.key>= 0 && e.key <= 9)? displayScreen(e.key):0;
 });
@@ -57,7 +56,6 @@ operatorBtn.forEach(button => button.addEventListener('click', () =>{
         operatorValue = button.textContent;
         value1= display.textContent;
         display.textContent = "";
-        console.log('operator button func 1');
     }
     // sets value2 and operates, value1 already declared
     else if(result == 0 && value2 ==0 && operatorValue != ""){ 
@@ -70,7 +68,6 @@ operatorBtn.forEach(button => button.addEventListener('click', () =>{
         operatorValue = button.textContent;
         value1= result;
         value2= 0;
-        console.log('func 2');
     }
     //calculator already computed once
     else if (value1 !=0 && result != 0 && display.textContent == "" && value2== 0){
